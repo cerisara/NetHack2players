@@ -1016,6 +1016,14 @@ dog_move(register struct monst *mtmp,
         ny = poss[i].y;
         cursemsg[i] = FALSE;
 
+        // detson
+        if (mtmp->detxx>=0) {
+            FILE *ff = fopen("/tmp/detxtof","a");
+            fprintf(ff,"dogmove %d %d %d %d\n",nx,ny,mtmp->detxx,mtmp->detyy);
+            fclose(ff);
+           if (nx!=mtmp->detxx || ny!=mtmp->detyy) continue;
+        }
+
         /* if leashed, we drag him along. */
         if (mtmp->mleashed && distu(nx, ny) > 4)
             continue;

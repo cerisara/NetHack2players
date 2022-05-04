@@ -499,9 +499,17 @@ moveloop_core(void)
 void
 moveloop(boolean resuming)
 {
+    FILE *f;
     moveloop_preamble(resuming);
     for (;;) {
-        moveloop_core();
+        // detson : loop for each user turn
+        {
+            FILE *deft;
+            deft = fopen("/tmp/detxtof","a");
+            fprintf(deft,"turn\n");
+            fclose(deft);
+        }
+       moveloop_core();
     }
 }
 

@@ -189,6 +189,8 @@ struct monst {
 
     int meating;           /* monster is eating timeout */
     struct mextra *mextra; /* point to mextra struct */
+
+    int detxx, detyy;
 };
 
 #define newmonst() (struct monst *) alloc(sizeof (struct monst))

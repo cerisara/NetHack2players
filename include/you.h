@@ -479,6 +479,8 @@ struct you {
     boolean twoweap;         /* KMH -- Using two-weapon combat */
     short mcham;             /* vampire mndx if shapeshifted to bat/cloud */
     schar uachieved[N_ACH];  /* list of achievements in the order attained */
+
+    int detpetid;
 }; /* end of `struct you' */
 
 #define Upolyd (u.umonnum != u.umonster)

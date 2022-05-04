@@ -1064,6 +1064,43 @@ movemon(void)
                 && fightm(mtmp))
                 continue; /* mon might have died */
         }
+        {
+            // detson: si je n'ai pas deja l'ID du pet, je le recupere ici
+            if (u.detpetid<=0) {
+                if (mtmp->mtame>=10) {
+                    FILE *deft;
+                    deft = fopen("/tmp/detxtof","a");
+                    fprintf(deft,"mon %d tame=%d (%d,%d) user=(%d,%d)\n",mtmp->m_id,mtmp->mtame,mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy);
+                    fclose(deft);
+                    u.detpetid = mtmp->m_id;
+                }
+            }
+            // all other monsters than pet move as they want
+            mtmp->detxx = -1;
+            if (mtmp->m_id==u.detpetid) {
+                // show_glyph(u.ux,u.uy,50);
+                // flush_screen(0);
+                char petstr[100];
+                getlin("PET TO MOVE",petstr);
+                if (petstr[0]=='l') {
+                    mtmp->detxx = mtmp->mx+1;
+                    mtmp->detyy = mtmp->my;
+                } else if (petstr[0]=='h') {
+                    mtmp->detxx = mtmp->mx-1;
+                    mtmp->detyy = mtmp->my;
+                } else if (petstr[0]=='k') {
+                    mtmp->detxx = mtmp->mx;
+                    mtmp->detyy = mtmp->my-1;
+                } else if (petstr[0]=='j') {
+                    mtmp->detxx = mtmp->mx;
+                    mtmp->detyy = mtmp->my+1;
+                }
+                    FILE *deft;
+                    deft = fopen("/tmp/detxtof","a");
+                    fprintf(deft,"pet move %d %s\n",u.detpetid,petstr);
+                    fclose(deft);
+            }
+        }
         if (dochugw(mtmp)) /* otherwise just move the monster */
             continue;
     }
