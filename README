@@ -1,3 +1,13 @@
+This is a patch to the official NetHack 3.7.0 that allows two players to play
+collaboratively: one player controls the main character, while the other controls
+its pet.
+
+Please find details on [https://cerisara.github.io/NetHack2players/](https://cerisara.github.io/NetHack2players/).
+
+Please find below the official NetHack README.
+
+--------
+
          NetHack 3.7.0 work-in-progress -- General information
 
 NetHack 3.7 is an enhancement to the dungeon exploration game NetHack,
