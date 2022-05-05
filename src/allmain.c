@@ -503,12 +503,12 @@ moveloop(boolean resuming)
     moveloop_preamble(resuming);
     for (;;) {
         // detson : loop for each user turn
-        {
+        /*
             FILE *deft;
             deft = fopen("/tmp/detxtof","a");
             fprintf(deft,"turn\n");
             fclose(deft);
-        }
+            */
        moveloop_core();
     }
 }

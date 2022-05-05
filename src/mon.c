@@ -1068,10 +1068,12 @@ movemon(void)
             // detson: si je n'ai pas deja l'ID du pet, je le recupere ici
             if (u.detpetid<=0) {
                 if (mtmp->mtame>=10) {
+                    /*
                     FILE *deft;
                     deft = fopen("/tmp/detxtof","a");
                     fprintf(deft,"mon %d tame=%d (%d,%d) user=(%d,%d)\n",mtmp->m_id,mtmp->mtame,mtmp->mx,mtmp->my,mtmp->mux,mtmp->muy);
                     fclose(deft);
+                    */
                     u.detpetid = mtmp->m_id;
                 }
             }
@@ -1094,11 +1096,28 @@ movemon(void)
                 } else if (petstr[0]=='j') {
                     mtmp->detxx = mtmp->mx;
                     mtmp->detyy = mtmp->my+1;
+                } else if (petstr[0]=='u') {
+                    mtmp->detxx = mtmp->mx+1;
+                    mtmp->detyy = mtmp->my-1;
+                } else if (petstr[0]=='y') {
+                    mtmp->detxx = mtmp->mx-1;
+                    mtmp->detyy = mtmp->my-1;
+                } else if (petstr[0]=='n') {
+                    mtmp->detxx = mtmp->mx+1;
+                    mtmp->detyy = mtmp->my+1;
+                } else if (petstr[0]=='b') {
+                    mtmp->detxx = mtmp->mx-1;
+                    mtmp->detyy = mtmp->my+1;
+                } else if (petstr[0]=='.') {
+                    mtmp->detxx = mtmp->mx;
+                    mtmp->detyy = mtmp->my;
                 }
-                    FILE *deft;
-                    deft = fopen("/tmp/detxtof","a");
-                    fprintf(deft,"pet move %d %s\n",u.detpetid,petstr);
-                    fclose(deft);
+                /*
+                   FILE *deft;
+                   deft = fopen("/tmp/detxtof","a");
+                   fprintf(deft,"pet move %d %s\n",u.detpetid,petstr);
+                   fclose(deft);
+                   */
             }
         }
         if (dochugw(mtmp)) /* otherwise just move the monster */
