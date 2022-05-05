@@ -1018,34 +1018,42 @@ dog_move(register struct monst *mtmp,
 
         // detson
         if (mtmp->detxx>=0) {
-           if (nx!=mtmp->detxx || ny!=mtmp->detyy) {
-            FILE *ff = fopen("/tmp/detxtof","a");
-            fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) diff2tgt\n",nx,ny,mtmp->detxx,mtmp->detyy);
-            fclose(ff);
-               continue;
-           }
+            if (nx!=mtmp->detxx || ny!=mtmp->detyy) {
+                /*
+                   FILE *ff = fopen("/tmp/detxtof","a");
+                   fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) diff2tgt\n",nx,ny,mtmp->detxx,mtmp->detyy);
+                   fclose(ff);
+                   */
+                continue;
+            }
         }
 
         /* if leashed, we drag him along. */
         if (mtmp->mleashed && distu(nx, ny) > 4) {
-            FILE *ff = fopen("/tmp/detxtof","a");
-            fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) leashed\n",nx,ny,mtmp->detxx,mtmp->detyy);
-            fclose(ff);
+            /*
+               FILE *ff = fopen("/tmp/detxtof","a");
+               fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) leashed\n",nx,ny,mtmp->detxx,mtmp->detyy);
+               fclose(ff);
+               */
             continue;
         }
 
         /* if a guardian, try to stay close by choice */
         if (!has_edog && (j = distu(nx, ny)) > 16 && j >= udist) {
-            FILE *ff = fopen("/tmp/detxtof","a");
-            fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) guardian\n",nx,ny,mtmp->detxx,mtmp->detyy);
-            fclose(ff);
+            /*
+               FILE *ff = fopen("/tmp/detxtof","a");
+               fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) guardian\n",nx,ny,mtmp->detxx,mtmp->detyy);
+               fclose(ff);
+               */
             continue;
         }
 
         if ((info[i] & ALLOW_M) && MON_AT(nx, ny)) {
-            FILE *ff = fopen("/tmp/detxtof","a");
-            fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) monsterat\n",nx,ny,mtmp->detxx,mtmp->detyy);
-            fclose(ff);
+            /*
+               FILE *ff = fopen("/tmp/detxtof","a");
+               fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) monsterat\n",nx,ny,mtmp->detxx,mtmp->detyy);
+               fclose(ff);
+            */
             int mstatus;
             register struct monst *mtmp2 = m_at(nx, ny);
             /* weight the audacity of the pet to attack a differently-leveled
@@ -1094,10 +1102,12 @@ dog_move(register struct monst *mtmp,
             return MMOVE_DONE;
         }
         if ((info[i] & ALLOW_MDISP) && MON_AT(nx, ny)
-            && better_with_displacing && !undesirable_disp(mtmp, nx, ny)) {
-            FILE *ff = fopen("/tmp/detxtof","a");
-            fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) monsteratdisp\n",nx,ny,mtmp->detxx,mtmp->detyy);
-            fclose(ff);
+                && better_with_displacing && !undesirable_disp(mtmp, nx, ny)) {
+            /*
+               FILE *ff = fopen("/tmp/detxtof","a");
+               fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) monsteratdisp\n",nx,ny,mtmp->detxx,mtmp->detyy);
+               fclose(ff);
+               */
             int mstatus;
             register struct monst *mtmp2 = m_at(nx, ny);
 
@@ -1118,9 +1128,11 @@ dog_move(register struct monst *mtmp,
             struct trap *trap;
 
             if ((info[i] & ALLOW_TRAPS) && (trap = t_at(nx, ny))) {
-            FILE *ff = fopen("/tmp/detxtof","a");
-            fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) trap\n",nx,ny,mtmp->detxx,mtmp->detyy);
-            fclose(ff);
+                /*
+                   FILE *ff = fopen("/tmp/detxtof","a");
+                   fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) trap\n",nx,ny,mtmp->detxx,mtmp->detyy);
+                   fclose(ff);
+                   */
                 if (mtmp->mleashed) {
                     if (!Deaf)
                         whimper(mtmp);
@@ -1138,9 +1150,11 @@ dog_move(register struct monst *mtmp,
         /* (minion isn't interested; `cursemsg' stays FALSE) */
         if (has_edog)
             for (obj = g.level.objects[nx][ny]; obj; obj = obj->nexthere) {
-            FILE *ff = fopen("/tmp/detxtof","a");
-            fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) object\n",nx,ny,mtmp->detxx,mtmp->detyy);
-            fclose(ff);
+                /*
+                   FILE *ff = fopen("/tmp/detxtof","a");
+                   fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) object\n",nx,ny,mtmp->detxx,mtmp->detyy);
+                   fclose(ff);
+                   */
                 if (obj->cursed) {
                     cursemsg[i] = TRUE;
                 } else if ((otyp = dogfood(mtmp, obj)) < MANFOOD
@@ -1159,10 +1173,12 @@ dog_move(register struct monst *mtmp,
         /* didn't find something to eat; if we saw a cursed item and
            aren't being forced to walk on it, usually keep looking */
         if (cursemsg[i] && !mtmp->mleashed && uncursedcnt > 0
-            && rn2(13 * uncursedcnt)) {
-            FILE *ff = fopen("/tmp/detxtof","a");
-            fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) curseditem\n",nx,ny,mtmp->detxx,mtmp->detyy);
-            fclose(ff);
+                && rn2(13 * uncursedcnt)) {
+            /*
+               FILE *ff = fopen("/tmp/detxtof","a");
+               fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) curseditem\n",nx,ny,mtmp->detxx,mtmp->detyy);
+               fclose(ff);
+               */
             continue;
         }
 
@@ -1176,9 +1192,11 @@ dog_move(register struct monst *mtmp,
             for (j = 0; j < MTSZ && j < k - 1; j++)
                 if (nx == mtmp->mtrack[j].x && ny == mtmp->mtrack[j].y)
                     if (rn2(MTSZ * (k - j))) {
-            FILE *ff = fopen("/tmp/detxtof","a");
-            fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) nobacktrack\n",nx,ny,mtmp->detxx,mtmp->detyy);
-            fclose(ff);
+                        /*
+                           FILE *ff = fopen("/tmp/detxtof","a");
+                           fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) nobacktrack\n",nx,ny,mtmp->detxx,mtmp->detyy);
+                           fclose(ff);
+                           */
                         goto nxti;
                     }
         }
@@ -1200,9 +1218,11 @@ dog_move(register struct monst *mtmp,
         ;
     }
 
-            FILE *ff = fopen("/tmp/detxtof","a");
-            fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) yes!\n",nix,niy,mtmp->detxx,mtmp->detyy);
-            fclose(ff);
+    /*
+       FILE *ff = fopen("/tmp/detxtof","a");
+       fprintf(ff,"dogmove try=(%d,%d) tgt=(%d,%d) yes!\n",nix,niy,mtmp->detxx,mtmp->detyy);
+       fclose(ff);
+       */
     /* Pet hasn't attacked anything but is considering moving -
      * now's the time for ranged attacks. Note that the pet can move
      * after it performs its ranged attack. Should this be changed?

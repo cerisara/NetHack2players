@@ -21,7 +21,7 @@ Controlling the pet is very limited, on purpose: basically, you can only move th
 You can not volontary pick objects, you can only see the map around the main character, and if the pet is too far away from the
 player, it may not have any move allocated, and you'll have to wait for the main character to find her/his pet back.
 
-This patch is ideal when you (as an experiences NetHack player) want to introduce NetHack to a friend: in that case, let her/him
+This patch is ideal when you (as an experienced NetHack player) want to introduce NetHack to a friend: in that case, let her/him
 play the main character, and you should play the pet, explaining her/him all the subtleties of NetHack while you play together.
 
 Technically, as soon as its the pet turn to move, the top line will display the text "PET MOVE" and wait for a move character,
