@@ -7,8 +7,8 @@ There are several ways you can play with 2 players:
 - **Mono-player**: you can play alone and control both the main character moves and then its pet move, sequentially.
 - **Hot-seat**: you can play with a friend, both of you sitting in front of the same computer and keyboard.
 - **Network**: you can play with a friend through the network as follows:
-    - First, player A launches a shared session on this (linux) computer by running the "tmate" command (see [https://tmate.io/](https://tmate.io/))
-    - Then, player A sends the R/W ssh or web link to player B
+    - First, player A launches a shared session on her/his (linux) computer by running the "tmate" command (see [https://tmate.io/](https://tmate.io/))
+    - Then, player A sends the R/W ssh or web link (given by tmate) to player B
     - Then, player A launches this version of nethack
     - Now, both players can play one after the other, respectively the main character and the pet.
     - As both players control the same session, it's possible to exchange roles at any time, or continue playing alone, etc.
