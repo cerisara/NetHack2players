@@ -1082,8 +1082,9 @@ movemon(void)
             if (mtmp->m_id==u.detpetid) {
                 // show_glyph(u.ux,u.uy,50);
                 // flush_screen(0);
-                char petstr[100];
-                getlin("PET TO MOVE",petstr);
+                char petstr[100], petst[100];
+                sprintf(petst,"PET MOVE %d/%d",mtmp->m_lev,mtmp->mhp);
+                getlin(petst,petstr);
                 if (petstr[0]=='l') {
                     mtmp->detxx = mtmp->mx+1;
                     mtmp->detyy = mtmp->my;
